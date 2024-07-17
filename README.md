@@ -44,6 +44,10 @@ _If Python>=3.12, first `pip install setuptools` to get `distutils`. See [docs](
 
 Tested and benchmarked on `Python 3.12.4` and macOS Sonoma 14.5 (M1 Pro, 32GB)
 
+# TODO
+
+If/where to add [mx.compile](https://ml-explore.github.io/mlx/build/html/usage/compile.html)?
+
 # Benchmarks
 
 MLX seems to provide >4x speedup, see iterations/second `it/s` etc:
