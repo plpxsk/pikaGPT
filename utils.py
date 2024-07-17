@@ -80,3 +80,33 @@ def load_encoder_hparams_and_params(model_size, models_dir):
     params = load_gpt2_params_from_tf_ckpt(tf_ckpt_path, hparams)
 
     return encoder, hparams, params
+
+
+# adapted from original shape_tree(), see below
+def param_dict_to_mxarray(d):
+    import mlx.core as mx
+
+    if isinstance(d, np.ndarray):
+        return mx.array(d)
+    elif isinstance(d, list):
+        return [param_dict_to_mxarray(v) for v in d]
+    elif isinstance(d, dict):
+        return {k: param_dict_to_mxarray(v) for k, v in d.items()}
+    else:
+        ValueError("uh oh")
+
+
+# https://jaykmody.com/blog/gpt-from-scratch#parameters
+def shape_tree(d):
+    import mlx.core as mx
+
+    if isinstance(d, mx.array):
+        return list(d.shape)
+    elif isinstance(d, np.ndarray):
+        return list(d.shape)
+    elif isinstance(d, list):
+        return [shape_tree(v) for v in d]
+    elif isinstance(d, dict):
+        return {k: shape_tree(v) for k, v in d.items()}
+    else:
+        ValueError("uh oh")
