@@ -35,13 +35,6 @@ To check against original Numpy implementation (non-MLX), add `--numpy`:
 		"Alan Turing theorized that computers would one day become" \
 		--numpy
 
-# Details
-
-Main script is `pika.py`, which imports `encoder.py` (from OpenAI) and
-downloads model files with `utils.py`
-
-For more, see picoGPT: [jaymody/picoGPT](https://github.com/jaymody/picoGPT)
-
 # Install
 
 _If Python>=3.12, first `pip install setuptools` to get `distutils`. See [docs](https://docs.python.org/3/whatsnew/3.12.html)_
@@ -49,6 +42,17 @@ _If Python>=3.12, first `pip install setuptools` to get `distutils`. See [docs](
 `pip install -r requirements.txt`
 
 Tested and benchmarked on `Python 3.12.4` and macOS Sonoma 14.5 (M1 Pro, 32GB)
+
+# Details
+
+Main script is `pika.py`, which imports `encoder.py` (from OpenAI) and
+downloads model files with `utils.py`
+
+`pikaGPT` is based on `picoGPT` which is "an unnecessarily tiny and minimal
+implementation of GPT-2 in plain NumPy. The entire forward pass code is 40
+lines of code."
+
+For more, see picoGPT: [jaymody/picoGPT](https://github.com/jaymody/picoGPT)
 
 # TODO
 
