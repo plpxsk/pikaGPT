@@ -105,7 +105,8 @@ def mha(x, c_attn, c_proj, n_head, numpy=False):
 def transformer_block(x, mlp, attn, ln_1, ln_2, n_head, numpy=False):
     # multi-head causal self attention
     # [n_seq, n_embd] -> [n_seq, n_embd]
-    x = x + mha(layer_norm(x, **ln_1, numpy=numpy), **attn, n_head=n_head, numpy=numpy)
+    x = x + mha(layer_norm(x, **ln_1, numpy=numpy),
+                **attn, n_head=n_head, numpy=numpy)
 
     # position-wise feed forward network
     # [n_seq, n_embd] -> [n_seq, n_embd]
@@ -130,7 +131,8 @@ def gpt2(inputs, wte, wpe, blocks, ln_f, n_head, numpy=False):
         x = transformer_block(x, **block, n_head=n_head, numpy=numpy)
 
     # projection to vocab
-    x = layer_norm(x, **ln_f, numpy=numpy)  # [n_seq, n_embd] -> [n_seq, n_embd]
+    # [n_seq, n_embd] -> [n_seq, n_embd]
+    x = layer_norm(x, **ln_f, numpy=numpy)
     return x @ wte.T  # [n_seq, n_embd] -> [n_seq, n_vocab]
 
 
@@ -152,8 +154,8 @@ def generate(inputs, params, n_head, n_tokens_to_generate, numpy=False):
     return inputs[len(inputs) - n_tokens_to_generate:]
 
 
-def main(prompt: str, numpy: bool=False, n_tokens_to_generate: int=40,
-         model_size: str="124M", models_dir: str="models"):
+def main(prompt: str, numpy: bool = False, n_tokens_to_generate: int = 40,
+         model_size: str = "124M", models_dir: str = "models"):
     from utils import load_encoder_hparams_and_params, param_dict_to_mxarray
 
     # load encoder, hparams, and params from the released open-ai gpt-2 files
