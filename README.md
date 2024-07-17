@@ -35,6 +35,12 @@ To check against original Numpy implementation (non-MLX), add `--numpy`:
 		"Alan Turing theorized that computers would one day become" \
 		--numpy
 
+# Details
+
+Main script is `pika.py`, which imports `encoder.py` (from OpenAI) and
+downloads model files with `utils.py`
+
+For more, see picoGPT: [jaymody/picoGPT](https://github.com/jaymody/picoGPT)
 
 # Install
 
