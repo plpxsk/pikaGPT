@@ -30,6 +30,8 @@ class pikaTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         del cls.randx
+        del cls.randX
+        del cls.sqX
         del cls.tol
 
     def test_gelu(self):
